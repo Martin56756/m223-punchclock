@@ -26,4 +26,15 @@ public class UserController {
         user.setPassWord(bCryptPasswordEncoder.encode(user.getPassWord()));
         userRepository.save(user);
     }
+
+    @GetMapping
+    public List<User> getAll() {
+        return userRepository.findAll();
+    }
+
+    @DeleteMapping("/{userName}")
+    public void deleteUser(@PathVariable("userName") String userName) {
+        var user = userRepository.findByUserName(userName);
+        userRepository.delete(user);
+    }
 }

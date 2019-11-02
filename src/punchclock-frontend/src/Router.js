@@ -17,7 +17,7 @@ class PunchClockRouter extends Component {
         return (
             <Router>
                 <div className="container col-12">
-                    <ul className="navbar navbar-nav">
+                    <ul className="nav flex-column">
                         <li>
                             <Link to="/" className="navbar-brand nav-link">PunchClock</Link>
                         </li>

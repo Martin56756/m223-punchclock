@@ -22,6 +22,10 @@ public class EntryService {
         return entryRepository.findAll();
     }
 
+    public List<Entry> findByUser(long userId) {
+        return entryRepository.findAll();
+    }
+
     public void deleteEntry(long entryId) {
         entryRepository.deleteById(entryId);
     }

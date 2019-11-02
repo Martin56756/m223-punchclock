@@ -1,22 +1,20 @@
 package ch.zli.m223.punchclock.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
     private String userName;
     private String passWord;
 
-    public long getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Category category;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    @OneToMany
+    private List<Entry> entries;
 
     public String getUserName() {
         return userName;
