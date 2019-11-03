@@ -46,9 +46,9 @@ class LogTime extends Component {
     render() {
         return(
             <div className="row">
-                <button type="button" className="btn btn-primary" onClick={this.createEntry()}>Create</button>
-                <button type="button" className="btn btn-primary" onClick={this.deleteEntry(1)}>Delete</button>
-                <button type="button" className="btn btn-primary" onClick={this.getAll()}>Get All</button>
+                <button type="button" className="btn btn-primary" onClick={() => this.createEntry()}>Create</button>
+                <button type="button" className="btn btn-primary" onClick={() => this.deleteEntry(1)}>Delete</button>
+                <button type="button" className="btn btn-primary" onClick={() => this.getAll()}>Get All</button>
             </div>
         );
     }

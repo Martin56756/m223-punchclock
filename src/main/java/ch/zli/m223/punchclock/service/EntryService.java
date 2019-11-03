@@ -4,6 +4,10 @@ import ch.zli.m223.punchclock.domain.Entry;
 import ch.zli.m223.punchclock.repository.EntryRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Service
@@ -22,8 +26,8 @@ public class EntryService {
         return entryRepository.findAll();
     }
 
-    public List<Entry> findByUser(long userId) {
-        return entryRepository.findAll();
+    public List<Entry> findByUser(String userName) {
+        return entryRepository.findByUser(userName);
     }
 
     public void deleteEntry(long entryId) {

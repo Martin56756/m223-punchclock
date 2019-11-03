@@ -14,9 +14,9 @@ class Login extends Component {
     logIn() {
         const axios = require('axios');
         const that = this;
-        axios.get('/login', {username: that.state.userName, password: that.state.passWord}).then(function (response) {
+        axios.post('http://localhost:8081/login', {userName: that.state.userName, passWord: that.state.passWord}).then(function (response) {
             if (response.status == 200) {
-                localStorage = response.header.authorization;
+                localStorage.setItem('token', response.headers.Authorization);
                 that.props.history.push('/logTime');
             }else {
                 document.getElementById("errorMessage").innerHTML(response.body.message);
@@ -27,13 +27,13 @@ class Login extends Component {
     register() {
         const axios = require('axios');
         const that = this;
-        axios.post('/users/sign-up', {userName: that.state.userName, passWord: that.state.passWord}).then(function (response) {
+        axios.post('http://localhost:8081/users/sign-up', {userName: that.state.userName, passWord: that.state.passWord}).then(function (response) {
             if (response.status == 200) {
                 that.render();
             }else {
                 document.getElementById("errorMessage").innerHTML(response.body.message);
             }
-        })
+        });
     }
 
     render() {
@@ -43,11 +43,11 @@ class Login extends Component {
                 <div className="col-4">
                     <div className="row">
                         <label htmlFor="userName">Username</label>
-                        <input type="text" id="userName" className="form-control" autoFocus={true}/>
+                        <input type="text" id="userName" className="form-control" autoFocus={true} onChange={(event) => this.setState({userName:event.target.value})}/>
                         <label htmlFor="passWord">Password</label>
-                        <input type="password" id="passWord" className="form-control"/>
-                        <button type="button" className="btn btn-primary" id="loginBtn" onClick={this.logIn()}>Login</button>
-                        <button type="button" className="btn btn-secondary" onClick={this.register()} id="registerBtn">Register</button>
+                        <input type="password" id="passWord" className="form-control" onChange={(event) => this.setState({passWord:event.target.value})}/>
+                        <button type="button" className="btn btn-primary" id="loginBtn" onClick={() => this.logIn()}>Login</button>
+                        <button type="button" className="btn btn-secondary" onClick={() => this.register()} id="registerBtn">Register</button>
                     </div>
                     <div className="row">
                         <p id="errorMessage">

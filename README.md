@@ -1,13 +1,13 @@
 # M223: Punchclock
-Dies ist eine Beispielapplikation für das Modul M223.
+Diese Applikation wurde im Rahmen des ÜK-Modules 223 im ZLI erstellt.
+Repository-URL: https://github.com/Martin56756/m223-punchclock
 
-## Loslegen
-Folgende Schritte befolgen um loszulegen:
-1. Sicherstellen, dass JDK 12 installiert und in der Umgebungsvariable `path` definiert ist.
-1. Ins Verzeichnis der Applikation wechseln und über die Kommandozeile mit `./gradlew bootRun` oder `./gradlew.bat bootRun` starten
-1. Unittest mit `./gradlew test` oder `./gradlew.bat test` ausführen.
-1. Ein ausführbares JAR kann mit `./gradlew bootJar` oder `./gradlew.bat bootJar` erstellt werden.
+## Funktionen
+- In dieser Applikation können User verwaltet werden (erstellen, verändern, löschen)
+- Man kann auch Zeit erfassen (erstellen, verändern, löschen) und diese Kategorien zuordnen, welche auch erstellt, verändert oder gelöscht werden können.
+- Es werden beim Aufstarten der Applikation Beispieldaten eingefügt.
 
-Folgende Dienste stehen während der Ausführung im Profil `dev` zur Verfügung:
-- REST-Schnittstelle der Applikation: http://localhost:8081
-- Dashboard der H2 Datenbank: http://localhost:8081/h2-console
+## Zugang zur Applikation
+- Das Frontend wurde mit React entwickelt und ist nach dem Start unter localhost:3000 verfügbar.
+- Man kann sich entweder neu registrieren oder einen der beiden Beispieluser verwenden.
+- Die Logindaten sind: name: admin, pw: password; name: test, pw: test;

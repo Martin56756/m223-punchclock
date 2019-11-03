@@ -29,6 +29,10 @@ public class Entry {
     @JoinColumn(referencedColumnName = "userName")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Category category;
+
     public Long getId() {
         return id;
     }
@@ -59,5 +63,13 @@ public class Entry {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
