@@ -17,17 +17,24 @@ class PunchClockRouter extends Component {
         return (
             <Router>
                 <div className="container col-12">
-                    <ul className="nav flex-column">
-                        <li>
-                            <Link to="/" className="navbar-brand nav-link">PunchClock</Link>
-                        </li>
-                        <li>
-                            <Link to="/login" className="nav-link">{this.state.loginState}</Link>
-                        </li>
-                        <li>
-                            <Link to="/logTime" className="nav-link">Log Time</Link>
-                        </li>
-                    </ul>
+                    <div className="navbar fixed-top navbar-expand-sm">
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse col" id="navbarToggler">
+                            <ul className="navbar-nav">
+                                <li>
+                                    <Link to="/" className="navbar-brand nav-link">PunchClock</Link>
+                                </li>
+                                <li>
+                                    <Link to="/login" className="nav-link">{this.state.loginState}</Link>
+                                </li>
+                                <li>
+                                    <Link to="/logTime" className="nav-link">Log Time</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <Switch>
                         <Route path="/login" component={Login} />
                         <Route exact path="/" component={App} />

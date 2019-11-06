@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface EntryRepository extends JpaRepository<Entry, Long> {
-    @Query("SELECT e FROM Entry AS e WHERE e.userName = ?1")
+    @Query("SELECT e FROM Entry AS e WHERE e.user.userName = ?1")
     List<Entry> findByUser(String username);
 }

@@ -9,12 +9,12 @@ public class User {
     private String userName;
     private String passWord;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
-    private Category category;
-
     @OneToMany
     private List<Entry> entries;
+
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Role role;
 
     public String getUserName() {
         return userName;
@@ -30,5 +30,13 @@ public class User {
 
     public void setPassWord(String passWord) {
         this.passWord = passWord;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
