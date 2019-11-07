@@ -23,44 +23,66 @@ class UserModal extends Component {
 
     getUser(userName) {
         const that = this;
-        axios.get('http://localhost:8081/users/' + userName).then(function (response) {
-           if (response.status == 200) {
-               that.setState({
-                   userName: response.body.userName,
-                   passWord: response.body.passWord
-               });
-           }
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:8081/users/' + userName,
+            headers: {
+                "Authorization": localStorage.getItem('token')
+            },
+            success: function (data) {
+                that.setState({
+                    userName: data.userName,
+                    passWord: data.passWord
+                });
+            }
         });
     }
 
     updateUser() {
         const that = this;
-        axios.put('http://localhost:8081/users', {userName: that.state.userName, passWord: that.state.passWord, role: that.getRoleByName(that.state.role)}).then(function (response) {
-            if (response.status == 200) {
+        $.ajax({
+            type: "PUT",
+            url: 'http://localhost:8081/users',
+            headers: {
+                "Authorization": localStorage.getItem('token')
+            },
+            data: {userName: that.state.userName, passWord: that.state.passWord, role: that.getRoleByName(that.state.role)},
+            success: function (data) {
                 $("#userModal").modal("hide");
-            }else {
-                $("#errorMessage").innerHTML(response.body.message);
+            },
+            error: function (data) {
+                $("#errorMessage").html(data);
             }
         });
     }
 
     getRoleByName(name) {
         const that = this;
-        axios.get('http://localhost:8081/roles/' + name).then(function (response) {
-           if (response.status == 200) {
-               return response.data;
-           }
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:8081/roles/' + name,
+            headers: {
+                "Authorization": localStorage.getItem('token')
+            },
+            success: function(data) {
+                return data;
+            }
         });
     }
 
     getRoles() {
         const that = this;
-        axios.get('http://localhost:8081/roles').then(function (response) {
-           if (response.status == 200) {
-               for (let i = 0; i < response.data.count; i++) {
-                   that.state.roles.push(response.data[i]);
-               }
-           }
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:8081/roles',
+            headers: {
+                "Authorization": localStorage.getItem('token')
+            },
+            success: function (data) {
+                for (let i = 0; i < data.length; i++) {
+                    that.state.roles.push(data[i]);
+                }
+            }
         });
     }
 
@@ -82,7 +104,7 @@ class UserModal extends Component {
                             <input type="password" id="passWord" className="form-control" onChange={(event) => this.setState({passWord:event.target.value})}/>
                             <select id="roleSelect" onChange={(event) => this.setState({role: event.target.value})}>
                                 {
-                                    this.state.roles.map((role, i) =>
+                                    this.state.roles.map((role) =>
                                         <option name="role" selected={this.state.role == role.name}>role.name</option>
                                     )
                                 }

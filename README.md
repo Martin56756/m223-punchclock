@@ -8,6 +8,9 @@ Repository-URL: https://github.com/Martin56756/m223-punchclock
 - Es werden beim Aufstarten der Applikation Beispieldaten eingefügt.
 
 ## Zugang zur Applikation
+- Backend starten: In der Konsole zum Projektordner navigieren und mit ./gradlew build starten.
+- Die Anleitung zum Starten des Frontends befindet sich im README vom Frontend.
 - Das Frontend wurde mit React entwickelt und ist nach dem Start unter localhost:3000 verfügbar.
 - Man kann sich entweder neu registrieren oder einen der beiden Beispieluser verwenden.
 - Die Logindaten sind: name: admin, pw: password; name: test, pw: test;
+- Um die Daten anzuzeigen, muss die Seite mit F5 neu geladen werden.
