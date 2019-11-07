@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Redirect, withRouter, Switch } fr
 import App from './App';
 import Login from './Login';
 import LogTime from "./LogTime";
+import UserManagement from "./UserManagement";
 import 'bootstrap/dist/css/bootstrap.css'
 
 class PunchClockRouter extends Component {
@@ -13,7 +14,20 @@ class PunchClockRouter extends Component {
         }
     }
 
+    isLoggedIn() {
+        if (localStorage.getItem('token') !== null) {
+            return true;
+        }
+        return false;
+    }
+
     render() {
+        let logTimeLink;
+        let userManagementLink;
+        if (this.isLoggedIn()) {
+            logTimeLink = <li><Link to="/logTime" className="nav-link">Log Time</Link></li>;
+            userManagementLink = <li><Link to="/user-management" className="nav-link">User Management</Link></li>;
+        }
         return (
             <Router>
                 <div className="container col-12">
@@ -29,9 +43,8 @@ class PunchClockRouter extends Component {
                                 <li>
                                     <Link to="/login" className="nav-link">{this.state.loginState}</Link>
                                 </li>
-                                <li>
-                                    <Link to="/logTime" className="nav-link">Log Time</Link>
-                                </li>
+                                {logTimeLink}
+                                {userManagementLink}
                             </ul>
                         </div>
                     </div>
@@ -39,6 +52,7 @@ class PunchClockRouter extends Component {
                         <Route path="/login" component={Login} />
                         <Route exact path="/" component={App} />
                         <Route path="/logTime" component={LogTime}/>
+                        <Route path="/user-management" component={UserManagement}/>
                     </Switch>
                 </div>
             </Router>

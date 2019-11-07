@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <p>Hello World!</p>
-    </div>
-  );
+    return (
+        <div className="App">
+            <p>Welcome to the PunchClock Application</p>
+            <a className="btn btn-link" href="/login">Login</a>
+        </div>
+    );
 }
 
 export default App;

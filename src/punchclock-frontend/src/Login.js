@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class Login extends Component {
@@ -12,11 +13,11 @@ class Login extends Component {
     }
 
     logIn() {
-        const axios = require('axios');
         const that = this;
         axios.post('http://localhost:8081/login', {userName: that.state.userName, passWord: that.state.passWord}).then(function (response) {
             if (response.status == 200) {
-                localStorage.setItem('token', response.headers.Authorization);
+                localStorage.setItem('token', response.headers.authorization);
+                console.log(response.headers);
                 that.props.history.push('/logTime');
             }else {
                 document.getElementById("errorMessage").innerHTML(response.body.message);
@@ -25,7 +26,6 @@ class Login extends Component {
     }
 
     register() {
-        const axios = require('axios');
         const that = this;
         axios.post('http://localhost:8081/users/sign-up', {userName: that.state.userName, passWord: that.state.passWord}).then(function (response) {
             if (response.status == 200) {

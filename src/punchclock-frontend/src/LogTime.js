@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class LogTime extends Component {
@@ -10,7 +11,6 @@ class LogTime extends Component {
     }
 
     getAll() {
-        const axios = require("axios");
         const that = this;
         axios.get('/entries').then(function (response) {
             if (response.status == 200) {
@@ -24,7 +24,6 @@ class LogTime extends Component {
     }
 
     deleteEntry(entryId) {
-        const axios = require("axios");
         const that = this;
         axios.delete('/entries/' + entryId).then(function (response) {
            if (response.status == 200) {
@@ -34,7 +33,6 @@ class LogTime extends Component {
     }
 
     createEntry() {
-        const axios = require("axios");
         const that = this;
         axios.post('/entries', {checkIn: "2016-01-29T08:34:55Z", checkOut: "2016-01-29T17:34:55Z"}).then(function (response) {
             if (response.status == 200) {

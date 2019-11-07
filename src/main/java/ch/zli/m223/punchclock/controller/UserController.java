@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.Valid;
+import javax.ws.rs.Path;
 import java.util.List;
 
 @RestController
@@ -30,6 +31,12 @@ public class UserController {
     public void signUp(@RequestBody User user) {
         user.setPassWord(bCryptPasswordEncoder.encode(user.getPassWord()));
         userRepository.save(user);
+    }
+
+    @GetMapping("/{userName}")
+    @ResponseStatus(HttpStatus.OK)
+    public User getUser(@PathVariable("userName") String userName) {
+        return userRepository.findByUserName(userName);
     }
 
     /**

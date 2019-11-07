@@ -23,6 +23,12 @@ public class RoleController {
         return roleService.findAll();
     }
 
+    @GetMapping("/{roleName}")
+    @ResponseStatus(HttpStatus.OK)
+    public Role getRoleByName(@PathVariable("roleName") String name) {
+        return roleService.getRoleByName(name);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Role createRole(@Valid @RequestBody Role role) {
